@@ -29,6 +29,21 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section{
+        case 0:
+            print("You selected \(fruits[indexPath.row])")
+        case 1:
+            print("You selected \(vegetable[indexPath.row])")
+        default:
+            break
+        }
+    }
+}
+
+
 extension ViewController: UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,6 +78,28 @@ extension ViewController: UITableViewDataSource{
         
         //#3. Return the cell
         return cell //for a cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section{
+        case 0:
+            return "Fruits"
+        case 1:
+            return "Vegetable"
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section{
+        case 0:
+            return "\(fruits.count) Fruits are good"
+        case 1:
+            return "\(vegetable.count) Vegetables are good"
+        default:
+            return nil
+        }
     }
 }
 
